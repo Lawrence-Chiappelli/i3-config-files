@@ -9,7 +9,7 @@ This repository contains custom configuration files and scripts used to customiz
 ## **Table of contents**:
 
 * [Considerations](#Considerations)
-* [Component rundown]
+* Component rundown
   * [config](#config)
   * [i3blocks.conf](#i3blocks.conf)
   * [scripts](#scripts)
