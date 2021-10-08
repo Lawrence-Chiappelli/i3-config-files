@@ -30,7 +30,7 @@ Clone this repo: `$ git clone https://github.com/Lawrence-Chiappelli/i3-config-f
 
 Then:
 
-1) Manually move `config` to `~/.config/i3/`: ``
+1) Manually move `config` to `~/.config/i3/`
 2) Manually move `*.sh` script files to `~/.config/i3blocks/`
 
 Make directories if necessary.
