@@ -69,16 +69,23 @@ All keybinds are inherited from i3's default keybindings, with the exception of 
 ---
 
 `$mod+d` - open default dmenu
+
 `$mod+Shift+d` - open desktop files dmenu
+
 `$mod+Shift+ctrl+d` - open config files dmenu
 
 ---
 
 `$mod+F2` - decrease master volume
+
 `$mod+F3` - increase master volume
+
 `$mod+F4` - toggle master volume
+
 `$mod+Shift+F2` - decrease headphone volume
+
 `$mod+Shift+F3` - increase headphone volume
+
 `$mod+Shift+F4` - toggle headphone volume
 
 This corresponds to my keyboard volume keys, assuming if used with FN.
@@ -88,8 +95,11 @@ This corresponds to my keyboard volume keys, assuming if used with FN.
 Focus/move keys:
 
 `j` for left
+
 `i` for up
+
 `k` for down
+
 `l` for right
 
 Combine with `Shift` where required.
@@ -97,8 +107,11 @@ Combine with `Shift` where required.
 ---
 
 `$mod+Tab` - split toggle
+
 `Print` - `$ exec "sleep 0 && flameshot gui`
+
 `Shift+Print` - `$ exec "sleep 1 && flameshot gui`
+
 `Shift+ctrl+Print` - `$ exec "sleep 2 && flameshot gui`
 
 The omission of `$mod` is intentional for some keys.
@@ -175,12 +188,12 @@ A script originally planned to display the name of the SSID I am connected to. H
 
 One caveat is that this script assumes you'll be connected via USB tethering. The for reason for this is that my wifi adapter lacked driver support at the time. 
 
-If you have USB tethering enabled, but have no internet access, it will simply indicate so with the text "USB tethering". This means it recongizes you have USB tethering enabled, but you'll have to take some further action to connect to the internet. Hint: check your device's MAC address with `$ ip addr`
+If you have USB tethering enabled, but have no internet access, it will simply indicate so with the text "USB tethering". This means it recongizes you have USB tethering enabled, but you'll have to take some further action to connect to the internet. Hint: check your device's MAC address with `$ ip addr`.
 
 
 ### Icons
 
-The following detail the clickable, interactive icons not tied to any scripts:
+The following details the clickable, interactive icons not tied to any scripts:
 
 #### Yellow up/down arrows
 
