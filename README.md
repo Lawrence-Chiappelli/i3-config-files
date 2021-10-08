@@ -8,7 +8,7 @@ This repository contains my configuration files and scripts used for my [i3 Wind
 * [Install](#Install)
   * [Instructions](#Instructions)
   * [Dependencies](#Dependencies)
-* [How to use](Manual)
+* [How to use](#How-to-use)
 * [Components](#Components)
   * ~/.config/i3
   * ~/.config/i3blocks
