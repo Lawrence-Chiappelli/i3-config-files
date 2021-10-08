@@ -1,0 +1,82 @@
+# Global properties
+separator=true
+separator_block_width=14
+markup=none
+command=/home/$USER/.config/i3blocks/$BLOCK_NAME
+
+[arch-version]
+command=echo " - $(uname -r)"
+color=#e79650
+interval=once
+
+[ssid.sh]
+full_text=" - Detecting..."
+color=#30c765
+interval=5
+
+[cpu.sh]
+full_text= - 0%
+interval=5
+color=#C9E3DB
+
+[gpu.sh]
+full_text=" - 0%"
+interval=5
+color=#C9E3DB
+
+[ram.sh]
+interval=3
+color=#C9E3DB
+
+[HDD]
+command= df -h / | awk '/\//{ printf(" - %4s/%s\n", $4, $2)}'
+interval=30
+color=#C9E3DB
+
+[brightness]
+full_text=""
+command=bash $BLOCK_NAME.sh 'increase'
+interval=0
+color=#f4f27e
+
+[brightness.sh]
+full_text=""
+command=bash $BLOCK_NAME 'decrease'
+interval=0
+color=#f4f27e
+
+[fileexplorer]
+full_text=""
+command=thunar
+color="#FFA07A"
+
+[screenshot]
+full_text=""
+command=flameshot gui
+color=#78a2f5
+
+[audio.sh]
+interval=once
+signal=10
+color=#ac77f4
+
+[date]
+command=printf "$(date '+%B %d, %Y')\n$(date '+%m-%d-%Y')\n"
+interval=60
+
+[time]
+# Without seconds:
+#command=printf "$(date '+%l:%M %p')\n$(date '+%1:%M %p')\n"
+command=printf "$(date '+%l:%M %p (%S)')\n$(date '+%1:%M %p')\n"
+interval=1
+
+[logout.sh]
+full_text=" "
+interval=0
+color=#ff5050
+
+#[power]
+#full_text=" "
+#command=shutdown now
+#interval=0
+#color=#00FF00

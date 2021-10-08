@@ -1,0 +1,244 @@
+set $mod Mod1
+font pango:System San Francisco Display 13
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+set $TERMINAL alacritty
+set $SCRIPT_PATH ~/.config/i3blocks
+bindsym $mod+Return exec $TERMINAL
+
+# kill focused window
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec bash $SCRIPT_PATH/dmenu.sh
+bindsym $mod+Shift+d exec bash $SCRIPT_PATH/dmenu_i3.sh
+bindsym $mod+Shift+ctrl+d exec bash $SCRIPT_PATH/dmenu_conf.sh
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+i focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# split toggle
+bindsym $mod+Tab split t
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Monitors:
+set $m1 DP-4
+set $m2 HDMI-0
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws10 "10: "
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+##################################
+# Application workspace assignment
+##################################
+
+# Before we actually launch any actual applications
+# move specific windows to specific workspaces, both on boot and run (run xprop in console to get the 2nd class string)
+
+assign [class="Gufw.py"] $ws10  # NOTE: this firewall software won't open like this- type 'sudo gufw' in console instead
+assign [class="Nvidia-settings"] $ws10
+
+##############################
+# Monitor workspace assignment
+##############################
+
+# Dedicated monitors for workspaces
+workspace $ws1 output $m1
+workspace $ws2 output $m1
+workspace $ws3 output $m1
+# workspace $ws4 output $m1 (sometimes want on $m2)
+workspace $ws5 output $m1
+workspace $ws6 output $m2
+workspace $ws7 output $m2
+workspace $ws8 output $m2
+workspace $ws9 output $m2
+workspace $ws10 output $m2
+
+###################
+# Launch on i3 load
+###################
+
+exec $TERMINAL
+exec ulauncher --hide-window
+# Hide the window to remove it from view
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec bash $SCRIPT_PATH/logout.sh
+bindsym Print exec "sleep 0 && flameshot gui"
+bindsym Shift+Print exec "sleep 1 && flameshot gui"
+bindsym Shift+ctrl+Print exec "sleep 2 && flameshot gui"
+
+########
+# Colors
+########
+
+set $blue #344e6d
+set $blue_border #598bb1
+set $white #ffffff
+set $whiteish #f3f4f5
+set $green #3d4c3d
+set $green_border #5c7e5c
+set $split_color #d54444
+
+# Client focused bg og: #285588
+# Client focused border og: #4c7899
+# Client focused child border og: #285577
+# Client focused indicator og: #2e9ef4
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $blue_border $blue #ffffff $split_color   #285577
+client.focused_inactive $green_border $green #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #000000 #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+##################
+# Resizing windows
+##################
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym i resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+########
+# i3 bar
+########
+
+# inactive bg og: #0d1b26
+# urgent bg og: #009933
+# binding bg of: #900000
+# binding border og: $2f343a
+
+# Starts i3bar
+bar {
+	status_command i3blocks -c $SCRIPT_PATH/config
+	tray_output DP-4
+	position top
+	colors {
+        	background #0a0c0f
+	        statusline $white
+	        separator #666666
+
+		# <colorclass> <border> <background> <text>
+	        focused_workspace  $green_border $green $whiteish
+	        active_workspace   #333333 $green $whiteish
+	        inactive_workspace #1a2832 #0d1b26 #888888
+	        urgent_workspace   #66ff66 #009933 $whiteish
+	        binding_mode       #ff0000 #900000 $whiteish
+    	}
+}
+
+###############
+# Misc keybinds
+###############
+
+bindsym $mod+F2 exec amixer set Master 5%- & exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+F3 exec amixer set Master 5%+ & exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+F4 exec amixer set Master toggle && exec pkill -SIGRTMIN+10 i3blocks
+
+bindsym $mod+Shift+F2 exec amixer set Headphone 5%- && exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+Shift+F3 exec amixer set Headphone 5%+ && exec pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+Shift+F4 exec amixer set Headphone toggle && exec pkill -SIGRTMIN+10 i3blocks
+
+bindsym $mod+Shift+x exec bash $SCRIPT_PATH/lock.sh

@@ -6,7 +6,7 @@ is_connected=$(ping -c 1 -q aur.archlinux.org >&/dev/null; echo $?)
 
 if (($is_connected==0))
 then
-	printf " - Connected\n\n#00ff00\n"
+	printf " - Connected\n\n#4fe86a\n"
 elif (($is_connected==2))
 then
 	# if [ -z "$(lsusb -d 0x04e8:)"]  # The best I can do to detect connected USB
